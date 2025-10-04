@@ -1,4 +1,5 @@
 QA_GURU_COURSE
 
-TITLE
+TITLE:
+
 Lesson_3 Погружаемся в инструментарий и библиотеки.
