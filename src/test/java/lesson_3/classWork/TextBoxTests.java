@@ -1,4 +1,4 @@
-package lesson_2.classWork;
+package lesson_3.classWork;
 
 import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.BeforeAll;
