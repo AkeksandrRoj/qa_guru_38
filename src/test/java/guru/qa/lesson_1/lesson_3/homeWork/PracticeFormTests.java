@@ -1,4 +1,4 @@
-package lesson_3.homeWork;
+package guru.qa.lesson_1.lesson_3.homeWork;
 
 import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.BeforeAll;
