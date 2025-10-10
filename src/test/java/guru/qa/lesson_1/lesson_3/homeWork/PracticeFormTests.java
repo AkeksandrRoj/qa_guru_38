@@ -19,19 +19,19 @@ public class PracticeFormTests {
     }
 
     @Test
-    void positiveFillPracticeForm(){
+    void positiveFillPracticeFormTest(){
         open("automation-practice-form");
         $("#firstName").setValue("Ivan");
         $("#lastName").setValue("Ivanov");
         $("#userEmail").setValue("Something@mail.org");
-        $(".custom-control-label").click();
+        $("#genterWrapper").$(byText(("Male"))).click();
         $("#userNumber").setValue("9169284215");
         $("#dateOfBirthInput").click();
         $(".react-datepicker__month-select").selectOption("November");
         $(".react-datepicker__year-select").selectOption("2000");
         $(".react-datepicker__day--020").click();
         $("#subjectsInput").setValue("English").pressEnter();
-        $("#hobbies-checkbox-1").parent().click();
+        $("#hobbiesWrapper").$(byText("Reading")).click();
         $("#uploadPicture").uploadFromClasspath("Some.png");
         $("#currentAddress").setValue("Something address");
         $("#state").click();
@@ -48,7 +48,7 @@ public class PracticeFormTests {
         $(".modal-body").shouldHave(text("2000"));
         $(".modal-body").shouldHave(text("20"));
         $(".modal-body").shouldHave(text("English"));
-        $(".modal-body").shouldHave(text("Sports"));
+        $(".modal-body").shouldHave(text("Reading"));
         $(".modal-body").shouldHave(text("Some.png"));
         $(".modal-body").shouldHave(text("Something address"));
         $(".modal-body").shouldHave(text("Rajasthan"));
