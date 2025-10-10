@@ -1,4 +1,4 @@
-package guru.qa.lesson_1.lesson_3.classWork;
+package guru.qa.lesson3.classWork;
 
 import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.BeforeAll;

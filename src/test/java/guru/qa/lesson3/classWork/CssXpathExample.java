@@ -1,4 +1,4 @@
-package guru.qa.lesson_1.lesson_3.classWork;
+package guru.qa.lesson3.classWork;
 
 import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.$;
