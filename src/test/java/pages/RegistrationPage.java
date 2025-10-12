@@ -4,7 +4,7 @@ import com.codeborne.selenide.SelenideElement;
 import pages.cpmponents.CalendarComponent;
 import pages.cpmponents.DropDownsList;
 
-import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 
@@ -22,7 +22,9 @@ public class RegistrationPage {
             currentAddressInput = $("#currentAddress"),
             stateInput = $("#state"),
             cityInput = $("#city"),
-            submitClick = $("#submit");
+            submitClick = $("#submit"),
+            modalWindow = $(".modal-content");
+
 
     CalendarComponent calendarComponent = new CalendarComponent();
     DropDownsList dropDownsList = new DropDownsList();
@@ -91,19 +93,26 @@ public class RegistrationPage {
         dropDownsList.setDropDownList(state);
         return this;
     }
-    public RegistrationPage setCity(String city){
+
+    public RegistrationPage setCity(String city) {
         cityInput.click();
         dropDownsList.setDropDownList(city);
         return this;
     }
 
-    public RegistrationPage clickSubmit(){
+    public RegistrationPage clickSubmit() {
         submitClick.click();
         return this;
     }
 
-    public RegistrationPage checkResult(String key, String value){
+    public RegistrationPage checkResult(String key, String value) {
         $(".table-responsive").$(byText(key)).parent().shouldHave(text(value));
+        return this;
+    }
+
+
+    public RegistrationPage modalWindowNotShouldBeVisible(){
+        modalWindow.shouldNotBe(visible);
         return this;
     }
 

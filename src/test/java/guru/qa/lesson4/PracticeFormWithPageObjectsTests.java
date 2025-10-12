@@ -1,13 +1,10 @@
 package guru.qa.lesson4;
 
-import com.codeborne.selenide.Configuration;
-import org.junit.jupiter.api.BeforeAll;
+
 import org.junit.jupiter.api.Test;
 import pages.RegistrationPage;
 
-import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Selectors.byText;
-import static com.codeborne.selenide.Selenide.*;
+
 
 
 public class PracticeFormWithPageObjectsTests extends TestBase {
@@ -42,15 +39,16 @@ public class PracticeFormWithPageObjectsTests extends TestBase {
                 .checkResult("Hobbies", "Reading")
                 .checkResult("Picture", "Some.png")
                 .checkResult("Address", "Something address")
-                .checkResult("State and City","Rajasthan Jaiselmer");
+                .checkResult("State and City", "Rajasthan Jaiselmer");
 
     }
 
     @Test
-    void positiveMinimumRequiredFieldsTest(){
+    void positiveMinimumRequiredFieldsTest() {
         registrationPage.openPage()
                 .setFirstName("Ivan")
                 .setLastName("Ivanov")
+                .setEmail("Something@mail.org")
                 .setGender("Male")
                 .setNumber("9169284215")
                 .clickSubmit();
@@ -58,6 +56,21 @@ public class PracticeFormWithPageObjectsTests extends TestBase {
         registrationPage.checkResult("Student Name", "Ivan Ivanov")
                 .checkResult("Gender", "Male")
                 .checkResult("Mobile", "9169284215");
+
+    }
+
+    @Test
+    void negativeInvalidEmailTest() {
+        registrationPage.openPage()
+                .setFirstName("Ivan")
+                .setLastName("Ivanov")
+                .setEmail("Somethingmail.org")
+                .setGender("Male")
+                .setNumber("9169284215")
+                .clickSubmit();
+
+        registrationPage.modalWindowNotShouldBeVisible();
+
 
     }
 
