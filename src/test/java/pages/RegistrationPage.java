@@ -82,7 +82,7 @@ public class RegistrationPage {
     }
 
     public RegistrationPage setHobby(String value) {
-        hobbyInput.$(byText("Reading")).click();
+        hobbyInput.$(byText(value)).click();
         return this;
     }
 
@@ -108,9 +108,9 @@ public class RegistrationPage {
         return this;
     }
 
-    public RegistrationPage clickSubmit() {
+    public void clickSubmit() {
         submitClick.click();
-        return this;
+
     }
 
     public RegistrationPage checkResultRegistrationForm(String key, String value) {
@@ -119,9 +119,9 @@ public class RegistrationPage {
     }
 
 
-    public RegistrationPage modalWindowNotShouldBeVisible() {
+    public void modalWindowNotShouldBeVisible() {
         modalWindow.shouldNotBe(visible);
-        return this;
+
     }
 
 
