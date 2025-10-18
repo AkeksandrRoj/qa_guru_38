@@ -119,7 +119,7 @@ public class RegistrationPage {
     }
 
 
-    public void modalWindowNotShouldBeVisible() {
+    public void  modalWindowNotShouldBeVisible() {
         modalWindow.shouldNotBe(visible);
 
     }
