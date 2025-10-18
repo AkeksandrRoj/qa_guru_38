@@ -2,7 +2,7 @@ package pages;
 
 import com.codeborne.selenide.SelenideElement;
 import pages.cpmponents.CalendarComponent;
-import pages.cpmponents.DropDownsList;
+import pages.cpmponents.CheckResultComponent;
 
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.byText;
@@ -10,28 +10,36 @@ import static com.codeborne.selenide.Selenide.*;
 
 public class RegistrationPage {
 
-    private SelenideElement firstNameInput = $("#firstName"),
+    private final SelenideElement firstNameInput = $("#firstName"),
             lastNameInput = $("#lastName"),
             emailInput = $("#userEmail"),
-            genterWrapper = $("#genterWrapper"),
+            genderWrapper = $("#genterWrapper"),
             numberInput = $("#userNumber"),
             calendarInput = $("#dateOfBirthInput"),
             subjectInput = $("#subjectsInput"),
             hobbyInput = $("#hobbiesWrapper"),
             pictureInput = $("#uploadPicture"),
             currentAddressInput = $("#currentAddress"),
+            stateCityInput = $("#stateCity-wrapper"),
             stateInput = $("#state"),
             cityInput = $("#city"),
             submitClick = $("#submit"),
-            modalWindow = $(".modal-content");
+
+    modalWindow = $(".modal-content");
 
 
     CalendarComponent calendarComponent = new CalendarComponent();
-    DropDownsList dropDownsList = new DropDownsList();
+    CheckResultComponent checkResultComponent = new CheckResultComponent();
 
 
     public RegistrationPage openPage() {
         open("automation-practice-form");
+        executeJavaScript("$('#fixedban').remove()");
+        executeJavaScript("$('footer').remove()");
+        return this;
+    }
+
+    public RegistrationPage closeBanner() {
         executeJavaScript("$('#fixedban').remove()");
         executeJavaScript("$('footer').remove()");
         return this;
@@ -53,7 +61,7 @@ public class RegistrationPage {
     }
 
     public RegistrationPage setGender(String value) {
-        genterWrapper.$(byText((value))).click();
+        genderWrapper.$(byText((value))).click();
         return this;
     }
 
@@ -62,9 +70,9 @@ public class RegistrationPage {
         return this;
     }
 
-    public RegistrationPage setDateOfBirth(String day, String month, String year) {
+    public RegistrationPage setDateOfBirth(String month, String year) {
         calendarInput.click();
-        calendarComponent.setDate(day, month, year);
+        calendarComponent.setDate(month, year);
         return this;
     }
 
@@ -88,15 +96,15 @@ public class RegistrationPage {
         return this;
     }
 
-    public RegistrationPage setState(String state) {
+    public RegistrationPage setState(String value) {
         stateInput.click();
-        dropDownsList.setDropDownList(state);
+        stateCityInput.$(byText(value)).click();
         return this;
     }
 
-    public RegistrationPage setCity(String city) {
+    public RegistrationPage setCity(String value) {
         cityInput.click();
-        dropDownsList.setDropDownList(city);
+        stateCityInput.$(byText(value)).click();
         return this;
     }
 
@@ -105,13 +113,13 @@ public class RegistrationPage {
         return this;
     }
 
-    public RegistrationPage checkResult(String key, String value) {
-        $(".table-responsive").$(byText(key)).parent().shouldHave(text(value));
+    public RegistrationPage checkResultRegistrationForm(String key, String value) {
+        checkResultComponent.checkResult(key, value);
         return this;
     }
 
 
-    public RegistrationPage modalWindowNotShouldBeVisible(){
+    public RegistrationPage modalWindowNotShouldBeVisible() {
         modalWindow.shouldNotBe(visible);
         return this;
     }
