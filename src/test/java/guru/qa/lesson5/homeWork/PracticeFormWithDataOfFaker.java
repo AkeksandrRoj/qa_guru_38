@@ -47,27 +47,27 @@ public class PracticeFormWithDataOfFaker extends TestBase {
     @Test
     void positiveMinimumRequiredFieldsTest() {
         registrationPage.openPage()
-                .setFirstName("Ivan")
-                .setLastName("Ivanov")
-                .setEmail("Something@mail.org")
-                .setGender("Male")
-                .setNumber("9169284215")
+                .setFirstName(rf.firstName)
+                .setLastName(rf.lastName)
+                .setEmail(rf.userEmail)
+                .setGender(rf.userGender)
+                .setNumber(rf.userPhone)
                 .clickSubmit();
 
-        registrationPage.checkResultRegistrationForm("Student Name", "Ivan Ivanov")
-                .checkResultRegistrationForm("Gender", "Male")
-                .checkResultRegistrationForm("Mobile", "9169284215");
+        registrationPage.checkResultRegistrationForm("Student Name", rf.firstName + " " + rf.lastName)
+                .checkResultRegistrationForm("Gender", rf.userGender)
+                .checkResultRegistrationForm("Mobile", rf.userPhone);
 
     }
 
     @Test
     void negativeInvalidEmailTest() {
         registrationPage.openPage()
-                .setFirstName("Ivan")
-                .setLastName("Ivanov")
+                .setFirstName(rf.firstName)
+                .setLastName(rf.lastName)
                 .setEmail("Somethingmail.org")
-                .setGender("Male")
-                .setNumber("9169284215")
+                .setGender(rf.userGender)
+                .setNumber(rf.userPhone)
                 .clickSubmit();
 
         registrationPage.modalWindowNotShouldBeVisible();
