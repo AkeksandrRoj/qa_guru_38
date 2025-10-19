@@ -34,7 +34,7 @@ public class PracticeFormTests {
         $(".react-datepicker__day--020").click();
         $("#subjectsInput").setValue("English").pressEnter();
         $("#hobbiesWrapper").$(byText("Reading")).click();
-        $("#uploadPicture").uploadFromClasspath("Some.png");
+        $("#uploadPicture").uploadFromClasspath("Picture1.png");
         $("#currentAddress").setValue("Something address");
         $("#state").click();
         $("#stateCity-wrapper").$(byText("Rajasthan")).click();
@@ -51,7 +51,7 @@ public class PracticeFormTests {
         $(".modal-body").shouldHave(text("20"));
         $(".modal-body").shouldHave(text("English"));
         $(".modal-body").shouldHave(text("Reading"));
-        $(".modal-body").shouldHave(text("Some.png"));
+        $(".modal-body").shouldHave(text("Picture1.png"));
         $(".modal-body").shouldHave(text("Something address"));
         $(".modal-body").shouldHave(text("Rajasthan"));
         $(".modal-body").shouldHave(text("Jaiselmer"));

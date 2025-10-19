@@ -20,10 +20,10 @@ public class PracticeFormWithPageObjectsTests extends TestBase {
                 .setEmail("Something@mail.org")
                 .setGender("Male")
                 .setNumber("9169284215")
-                .setDateOfBirth("November", "2000")
+                .setDateOfBirth("20","November", "2000")
                 .setSubject("English")
                 .setHobby("Reading")
-                .uploadPicture("Some.png")
+                .uploadPicture("Picture1.png")
                 .setCurrentAddress("Something address")
                 .setState("NCR")
                 .setCity("Gurgaon")
@@ -36,7 +36,7 @@ public class PracticeFormWithPageObjectsTests extends TestBase {
                 .checkResultRegistrationForm("Date of Birth", "20 November,2000")
                 .checkResultRegistrationForm("Subjects", "English")
                 .checkResultRegistrationForm("Hobbies", "Reading")
-                .checkResultRegistrationForm("Picture", "Some.png")
+                .checkResultRegistrationForm("Picture", "Picture1.png")
                 .checkResultRegistrationForm("Address", "Something address")
                 .checkResultRegistrationForm("State and City", "NCR Gurgaon");
 
