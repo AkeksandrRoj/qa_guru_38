@@ -23,7 +23,7 @@ public class PlatiChastyamiWebTests {
 
 
     @ValueSource(strings = {"Покупателям", "Продавцам", "Магазины", "Отвечаем на вопросы"})
-    @ParameterizedTest(name = "Проверка, что пункт меню {0} отображается в шапке сайта")
+    @ParameterizedTest(name = "Проверка, пункт меню {0} отображается в шапке сайта")
     void headerMenuShouldContainExpectedItem(String menuItem) {
         open("https://platichastyami.ru/");
         $$(".navigation__link").findBy(text(menuItem)).shouldBe(visible);
@@ -51,8 +51,8 @@ public class PlatiChastyamiWebTests {
         );
     }
 
-    @ParameterizedTest(name = "Логотип отображается на странице: {0}")
     @MethodSource("pageData")
+    @ParameterizedTest(name = "Логотип отображается на странице: {0}")
     void logoShouldBeVisibleOnEachPage(String pageName, String pageUrl) {
         open(pageUrl);
         $(".logo__img").shouldBe(visible);
