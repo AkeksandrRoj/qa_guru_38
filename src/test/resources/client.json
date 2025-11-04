@@ -1,0 +1,21 @@
+{
+  "id": 10245,
+  "name": "Александр Иванов",
+  "age": 35,
+  "email": "alexandr.ivanov@example.com",
+  "isActive": true,
+  "address": {
+    "city": "Москва",
+    "street": "ул. Центральная, д. 10"
+  },
+  "contacts": [
+    {
+      "type": "phone",
+      "value": "+7 (916) 555-32-10"
+    },
+    {
+      "type": "telegram",
+      "value": "@alexandr_ivanov"
+    }
+  ]
+}
