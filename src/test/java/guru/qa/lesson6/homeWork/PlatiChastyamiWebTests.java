@@ -21,7 +21,7 @@ public class PlatiChastyamiWebTests {
         open("https://platichastyami.ru/");
     }
 
-
+    @Tag("HomeWork")
     @ValueSource(strings = {"Покупателям", "Продавцам", "Магазины", "Отвечаем на вопросы"})
     @ParameterizedTest(name = "Проверка, пункт меню {0} отображается в шапке сайта")
     void headerMenuShouldContainExpectedItem(String menuItem) {
@@ -29,7 +29,7 @@ public class PlatiChastyamiWebTests {
         $$(".navigation__link").findBy(text(menuItem)).shouldBe(visible);
     }
 
-
+    @Tag("HomeWork")
     @CsvFileSource(resources = "/test_data/pageOfBuyersShouldContainLinkOfPartnersTest.csv")
     @ParameterizedTest(name = "Проверка, что блок партнёра {0} содержит корректную ссылку")
     void pageOfBuyersShouldContainLinkOfPartnersTest(String partnerName, String id, String expectedLink) {
@@ -50,7 +50,7 @@ public class PlatiChastyamiWebTests {
                 Arguments.of("Отвечаем на вопросы", "https://platichastyami.ru/faq")
         );
     }
-
+    @Tag("HomeWork")
     @MethodSource("pageData")
     @ParameterizedTest(name = "Логотип отображается на странице: {0}")
     void logoShouldBeVisibleOnEachPage(String pageName, String pageUrl) {
