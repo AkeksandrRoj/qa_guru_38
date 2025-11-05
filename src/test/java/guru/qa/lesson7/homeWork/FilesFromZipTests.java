@@ -17,44 +17,58 @@ public class FilesFromZipTests {
 
     @Test
     void pdfFromZipTest() throws Exception {
+        boolean found = false;
         try (InputStream is = cl.getResourceAsStream("data.zip");
              ZipInputStream zis = new ZipInputStream(is)) {
             ZipEntry entry;
             while ((entry = zis.getNextEntry()) != null) {
+                found = true;
                 if (entry.getName().endsWith("pdf")) {
                     PDF pdf = new PDF(zis);
-                    Assertions.assertTrue(pdf.text.contains("Не изнуряй себя, чтобы разбогатеть;"));
+                    Assertions.assertTrue(pdf.text.contains("Не изнуряй себя, чтобы разбогатеть;"),
+                            "Не нашел фразу в PDF"
+                    );
                 }
             }
         }
+        Assertions.assertTrue(found, "PDF файла нет в архиве");
     }
+
 
     @Test
     void xlsFromZipTest() throws Exception {
+        boolean found = false;
         try (InputStream is = cl.getResourceAsStream("data.zip");
              ZipInputStream zis = new ZipInputStream(is)) {
             ZipEntry entry;
             while ((entry = zis.getNextEntry()) != null) {
-                if (entry.getName().endsWith("xls")) {
+                if (entry.getName().endsWith("xls") || entry.getName().endsWith("xlsx")) {
+                    found = true;
                     XLS xls = new XLS(zis);
                     String actualValue = xls.excel.getSheetAt(0).getRow(34).getCell(2).getStringCellValue();
-                    Assertions.assertTrue(actualValue.contains("Ashish"));
+                    Assertions.assertTrue(actualValue.contains("Ashish"),
+                            "Не нашел значение"
+                    );
                 }
             }
         }
+        Assertions.assertTrue(found, "XLS-файл не найден в архиве!");
     }
 
     @Test
     void csvFromZipTest() throws Exception {
+        boolean found = false;
         try (InputStream is = cl.getResourceAsStream("data.zip");
              ZipInputStream zis = new ZipInputStream(is)) {
             ZipEntry entry;
             while ((entry = zis.getNextEntry()) != null) {
                 if (entry.getName().endsWith("csv")) {
+                    found = true;
                     CSVReader csvReader = new CSVReader(new InputStreamReader(zis));
                     List<String[]> data = csvReader.readAll();
 
-                    Assertions.assertEquals(3, data.size());
+                    Assertions.assertEquals(3, data.size(),
+                            "Количество строк не совпадает");
                     Assertions.assertArrayEquals(
                             new String[]{"МегаМаркет", "https://megamarket.ru/landing/oplata-chastyami/"},
                             data.get(0)
@@ -70,6 +84,7 @@ public class FilesFromZipTests {
                 }
             }
         }
+        Assertions.assertTrue(found, "CSV файла нет в архиве");
     }
 }
 
