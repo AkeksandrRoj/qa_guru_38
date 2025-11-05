@@ -25,7 +25,7 @@ public class FilesFromZipTests {
                 found = true;
                 if (entry.getName().endsWith("pdf")) {
                     PDF pdf = new PDF(zis);
-                    Assertions.assertTrue(pdf.text.contains("Не изнуряй себя, чтобы разбогатеть;"),
+                    Assertions.assertTrue(pdf.text.contains("Не изнуряй себя, чтобы разбогатеть"),
                             "Не нашел фразу в PDF"
                     );
                 }
@@ -52,7 +52,7 @@ public class FilesFromZipTests {
                 }
             }
         }
-        Assertions.assertTrue(found, "XLS-файл не найден в архиве!");
+        Assertions.assertTrue(found, "XLS-файл не найден в архиве");
     }
 
     @Test
